@@ -33,4 +33,29 @@ class WalletController extends Controller
 
         return response()->json($response, $code);
     }
+
+    //count of wallet
+    public function totalWalletCount(Request $req)
+    {
+        try {
+
+            $data = WalletType::count();
+
+            $response = [
+                'data' => $data,
+                'status' => 'success'
+            ];
+
+            $code = 200;
+        } catch (\Throwable $th) {
+            $response = [
+                'data' => [],
+                'message' => $th->getMessage(),
+                'status' => 'error'
+            ];
+            $code = 400;
+        }
+
+        return response()->json($response, $code);
+    }
 }
