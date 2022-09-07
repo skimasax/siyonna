@@ -31,7 +31,7 @@ class UserController extends Controller
             $response = [
                 'data' => [],
                 'status' => 'error',
-                'message' => $th->getMesssage(),
+                'message' => $th->getMessage(),
             ];
             $code = 400;
         }
@@ -64,5 +64,4 @@ class UserController extends Controller
 
         return response()->json($response, $code);
     }
-    
 }

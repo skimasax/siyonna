@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WalletController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,8 +23,11 @@ Route::post('/v1/login', [AuthController::class, 'login'])->name('login');
 Route::get('/v1/totalusers', [UserController::class, 'totalusers'])->name('total users');
 Route::get('/v1/getallwallet', [WalletController::class, 'getAllWallet'])->name('get all wallet');
 Route::get('/v1/getwalletdetails/{id}', [WalletController::class, 'getWalletDetails'])->name('get wallet details');
+Route::get('/v1/getfulldetails', [WalletController::class, 'getFullDetails'])->name('get full details');
+
 
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 	Route::get('/v1/getuser/{id}', [UserController::class, 'getUserDetails'])->name('get user details');
+	Route::post('/v1/sendmoney', [TransactionController::class, 'sendMoney'])->name('send money');
 });
